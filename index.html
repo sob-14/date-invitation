@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, user-scalable=no">
+
+  <title>Um convite especial ❤️</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          #fff0f4,
+          transparent 40%
+        ),
+        linear-gradient(
+          135deg,
+          #fffafb,
+          #f9eef2
+        );
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      color: #30242a;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+
+      position: relative;
+      overflow: hidden;
+
+      padding: 40px 25px;
+
+      border: 1px solid #eadde1;
+      border-radius: 28px;
+
+      background: rgba(255, 250, 251, 0.97);
+
+      box-shadow:
+        0 20px 60px
+        rgba(90, 45, 60, 0.12);
+    }
+
+    .orb {
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      right: -80px;
+      top: -80px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(184, 92, 120, 0.07);
+
+      pointer-events: none;
+    }
+
+    .code {
+      position: relative;
+
+      margin-bottom: 25px;
+
+      color: #8f4059;
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 12px;
+
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      position: relative;
+
+      margin: 0 0 15px;
+
+      font-size:
+        clamp(32px, 7vw, 48px);
+
+      font-weight: 500;
+
+      line-height: 1.1;
+    }
+
+    .intro {
+      position: relative;
+
+      margin: 0 auto 30px;
+
+      max-width: 500px;
+
+      color: #806f76;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+    }
+
+    .intro em {
+      color: #8f4059;
+    }
+
+    .choices {
+      position: relative;
+
+      display: grid;
+
+      gap: 22px;
+    }
+
+    .label {
+      margin-bottom: 10px;
+
+      color: #806f76;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .options {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 10px;
+    }
+
+    /*
+      TOUCH-FRIENDLY BUTTON
+    */
+
+    .choice {
+      position: relative;
+
+      min-height: 56px;
+
+      padding: 14px 40px 14px 12px;
+
+      border: 2px solid #eadde1;
+
+      border-radius: 15px;
+
+      background: #ffffff;
+
+      color: #30242a;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+      -webkit-appearance: none;
+      appearance: none;
+
+      touch-action: manipulation;
+
+      user-select: none;
+      -webkit-user-select: none;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    /*
+      SELECTED BUTTON
+    */
+
+    .choice.selected {
+
+      border-color:
+        #b85c78;
+
+      background:
+        #fff0f4;
+
+      color:
+        #8f4059;
+
+      font-weight:
+        bold;
+
+      box-shadow:
+        0 6px 18px
+        rgba(
+          184,
+          92,
+          120,
+          0.18
+        );
+
+      transform:
+        translateY(-2px);
+    }
+
+    /*
+      VISIBLE CHECK MARK
+    */
+
+    .choice.selected::after {
+
+      content: "✓";
+
+      position: absolute;
+
+      right: 13px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      width: 24px;
+      height: 24px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        #b85c78;
+
+      color:
+        white;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 15px;
+
+      font-weight: bold;
+    }
+
+    #confirm {
+
+      width: 100%;
+
+      min-height: 54px;
+
+      margin-top: 28px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        #8f4059;
+
+      color: white;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      -webkit-appearance: none;
+      appearance: none;
+
+      touch-action: manipulation;
+
+      transition:
+        0.2s ease;
+    }
+
+    #confirm:disabled {
+
+      opacity: 0.4;
+
+      cursor:
+        not-allowed;
+    }
+
+    .hint {
+
+      min-height: 20px;
+
+      margin-top: 10px;
+
+      text-align: center;
+
+      color: #9a888f;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 12px;
+    }
+
+    /*
+      CONFIRMATION
+    */
+
+    .confirmation {
+
+      display: none;
+
+      text-align: center;
+    }
+
+    .confirmation.show {
+
+      display: block;
+
+      animation:
+        appear 0.7s ease;
+    }
+
+    .check {
+
+      width: 65px;
+      height: 65px;
+
+      margin:
+        0 auto 22px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        #fff0f4;
+
+      color:
+        #8f4059;
+
+      font-size: 28px;
+    }
+
+    .confirmation h2 {
+
+      margin:
+        0 0 12px;
+
+      font-size: 36px;
+
+      font-weight: 500;
+    }
+
+    .confirmation p {
+
+      color:
+        #806f76;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+    }
+
+    .details {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      margin:
+        25px auto;
+    }
+
+    .detail {
+
+      padding:
+        8px 12px;
+
+      border:
+        1px solid #ead3da;
+
+      border-radius: 999px;
+
+      background:
+        white;
+
+      color:
+        #8f4059;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 12px;
+    }
+
+    .little-note {
+
+      margin-top: 25px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid #eadde1;
+
+      color:
+        #927d85;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+    .little-note strong {
+
+      color:
+        #8f4059;
+    }
+
+    #send {
+
+      margin-top: 22px;
+
+      padding:
+        15px 22px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        #3b8d68;
+
+      color:
+        white;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 15px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      -webkit-appearance: none;
+      appearance: none;
+
+      touch-action: manipulation;
+    }
+
+    .small {
+
+      margin-top: 12px;
+
+      color:
+        #9a888f;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 12px;
+    }
+
+    .footer {
+
+      margin-top: 30px;
+
+      text-align: center;
+
+      color:
+        #b49da5;
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+    }
+
+    @keyframes appear {
+
+      from {
+        opacity: 0;
+        transform:
+          translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    @media (max-width: 450px) {
+
+      body {
+        padding: 12px;
+      }
+
+      .container {
+        padding:
+          32px 18px;
+      }
+
+      .options {
+        grid-template-columns:
+          1fr;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="container">
+
+    <div class="orb"></div>
+
+
+    <!-- INVITATION -->
+
+    <section id="form">
+
+      <div class="code">
+        &lt;DATE.exe / convite-especial&gt; ♡
+      </div>
+
+
+      <h1>
+        Vamos sair essa semana? ❤️
+      </h1>
+
+
+      <p class="intro">
+
+        Tenho uma pequena ideia...
+        você só precisa escolher alguns detalhes.
+
+        <em>
+          O resto eu cuido.
+        </em>
+
+      </p>
+
+
+      <div class="choices">
+
+
+        <!-- DIA -->
+
+        <div>
+
+          <div class="label">
+            Dia
+          </div>
+
+
+          <div
+            class="options"
+            data-group="dia"
+          >
+
+            <button
+              class="choice"
+              type="button"
+              data-value="Sexta-feira"
+            >
+              Sexta-feira
+            </button>
+
+
+            <button
+              class="choice"
+              type="button"
+              data-value="Sábado"
+            >
+              Sábado
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- HORÁRIO -->
+
+        <div>
+
+          <div class="label">
+            Horário
+          </div>
+
+
+          <div
+            class="options"
+            data-group="horario"
+          >
+
+            <button
+              class="choice"
+              type="button"
+              data-value="18:30"
+            >
+              18:30
+            </button>
+
+
+            <button
+              class="choice"
+              type="button"
+              data-value="19:30"
+            >
+              19:30
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- LOCAL -->
+
+        <div>
+
+          <div class="label">
+            Local
+          </div>
+
+
+          <div
+            class="options"
+            data-group="local"
+          >
+
+            <button
+              class="choice"
+              type="button"
+              data-value="Você escolhe"
+            >
+              Você escolhe
+            </button>
+
+
+            <button
+              class="choice"
+              type="button"
+              data-value="Eu escolho"
+            >
+              Eu escolho
+            </button>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        id="confirm"
+        type="button"
+        disabled
+      >
+        Confirmar escolha ✨
+      </button>
+
+
+      <div
+        id="hint"
+        class="hint"
+      >
+        Escolha um item de cada opção
+      </div>
+
+    </section>
+
+
+    <!-- CONFIRMATION -->
+
+    <section
+      id="confirmation"
+      class="confirmation"
+    >
+
+      <div class="check">
+        ♥
+      </div>
+
+
+      <h2>
+        Combinado então. ❤️
+      </h2>
+
+
+      <p>
+
+        Obrigada ❤️ Até lá.
+
+        <br>
+
+        O resto deixa comigo 😉
+
+      </p>
+
+
+      <div
+        id="details"
+        class="details"
+      ></div>
+
+
+      <div class="little-note">
+
+        <strong>P.S.:</strong>
+
+        dessa vez sem cancelamentos, hein? 😌
+
+        <br>
+
+        Já estou contando com esse encontro. ❤️
+
+      </div>
+
+
+      <button
+        id="send"
+        type="button"
+      >
+        Enviar minha escolha 💌
+      </button>
+
+
+      <div class="small">
+
+        Ao tocar, o WhatsApp abrirá
+        com a mensagem pronta para enviar.
+
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      // connection.status = "promising";
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /*
+      =========================
+      DATA
+      =========================
+    */
+
+    const state = {
+      dia: "",
+      horario: "",
+      local: ""
+    };
+
+
+    /*
+      =========================
+      ELEMENTS
+      =========================
+    */
+
+    const confirmButton =
+      document.getElementById("confirm");
+
+    const form =
+      document.getElementById("form");
+
+    const confirmation =
+      document.getElementById("confirmation");
+
+    const details =
+      document.getElementById("details");
+
+    const sendButton =
+      document.getElementById("send");
+
+    const hint =
+      document.getElementById("hint");
+
+
+    /*
+      =========================
+      WHATSAPP
+      =========================
+    */
+
+    const numero =
+      "5595981026338";
+
+
+    /*
+      =========================
+      BUTTON SELECTION
+      =========================
+    */
+
+    const buttons =
+      document.querySelectorAll(".choice");
+
+
+    buttons.forEach(button => {
+
+      /*
+        Using BOTH click and touch
+        support for iPhone.
+      */
+
+      button.addEventListener(
+        "click",
+        selectOption
+      );
+
+    });
+
+
+    function selectOption(event) {
+
+      event.preventDefault();
+
+      const button =
+        event.currentTarget;
+
+      const group =
+        button.closest(".options");
+
+      const key =
+        group.dataset.group;
+
+
+      /*
+        Remove previous selection
+      */
+
+      group
+        .querySelectorAll(".choice")
+        .forEach(other => {
+
+          other.classList.remove(
+            "selected"
+          );
+
+        });
+
+
+      /*
+        Select clicked option
+      */
+
+      button.classList.add(
+        "selected"
+      );
+
+
+      /*
+        Save answer
+      */
+
+      state[key] =
+        button.dataset.value;
+
+
+      /*
+        Check all answers
+      */
+
+      const complete =
+
+        state.dia !== "" &&
+
+        state.horario !== "" &&
+
+        state.local !== "";
+
+
+      if (complete) {
+
+        confirmButton.disabled =
+          false;
+
+        hint.textContent =
+          "Tudo certo. Agora é só confirmar ✨";
+
+      } else {
+
+        confirmButton.disabled =
+          true;
+
+        hint.textContent =
+          "Escolha um item de cada opção";
+
+      }
+
+    }
+
+
+    /*
+      =========================
+      CONFIRM
+      =========================
+    */
+
+    confirmButton.addEventListener(
+      "click",
+      function () {
+
+        if (
+          state.dia === "" ||
+          state.horario === "" ||
+          state.local === ""
+        ) {
+          return;
+        }
+
+
+        details.innerHTML = "";
+
+
+        [
+          state.dia,
+          state.horario,
+          state.local
+
+        ].forEach(value => {
+
+          const item =
+            document.createElement(
+              "span"
+            );
+
+          item.className =
+            "detail";
+
+          item.textContent =
+            value;
+
+          details.appendChild(
+            item
+          );
+
+        });
+
+
+        form.style.display =
+          "none";
+
+        confirmation.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+    /*
+      =========================
+      WHATSAPP
+      =========================
+    */
+
+    sendButton.addEventListener(
+      "click",
+      function () {
+
+        const text =
+          "Oi ❤️ Eu escolhi:\n\n" +
+          "📅 Dia: " +
+          state.dia +
+          "\n" +
+          "🕰️ Horário: " +
+          state.horario +
+          "\n" +
+          "📍 Local: " +
+          state.local +
+          "\n\n" +
+          "Até lá 😉";
+
+
+        const whatsapp =
+          "https://wa.me/" +
+          numero +
+          "?text=" +
+          encodeURIComponent(text);
+
+
+        window.location.href =
+          whatsapp;
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+</html>
